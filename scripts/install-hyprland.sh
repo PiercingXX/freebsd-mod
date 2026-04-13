@@ -12,6 +12,36 @@ username=${SUDO_USER:-$(id -un)}
 
 echo -e "${YELLOW}Installing Hyprland and Wayland stack...${NC}"
 
+# ── Hyprland wiki build prerequisites ────────────────────────────────────────
+# https://wiki.hypr.land/Getting-Started/Installation/
+sudo pkg install -y \
+    git \
+    pkgconf \
+    gmake \
+    gcc \
+    evdev-proto \
+    cmake \
+    wayland-protocols \
+    wayland \
+    libglvnd \
+    libxkbcommon \
+    libinput \
+    cairo \
+    pango \
+    pixman \
+    libxcb
+
+sudo pkg install -y \
+    meson \
+    jq \
+    hwdata \
+    libdisplay-info \
+    libliftoff
+
+export CC=gcc
+export CXX=g++
+export LDFLAGS="-static-libstdc++ -static-libgcc"
+
 # ── Hyprland core ─────────────────────────────────────────────────────────────
 sudo pkg install -y \
     hyprland \
