@@ -45,6 +45,9 @@ export LDFLAGS="-static-libstdc++ -static-libgcc"
 # ── Hyprland core ─────────────────────────────────────────────────────────────
 sudo pkg install -y \
     hyprland \
+    hyprpaper \
+    hyprlock \
+    hypridle \
     xwayland \
     wayland \
     wayland-protocols \
@@ -69,6 +72,16 @@ sudo pkg install -y \
     libnotify \
     wf-recorder \
     nwg-look
+
+sudo pkg install -y \
+    xdg-user-dirs \
+    xdg-utils \
+    nautilus \
+    networkmgr \
+    gnome-keyring
+
+sudo pkg install -y easyeffects || true
+sudo pkg install -y hyprsunset || true
 
 # ── Policy kit authentication agent ──────────────────────────────────────────
 sudo pkg install -y polkit polkit-gnome

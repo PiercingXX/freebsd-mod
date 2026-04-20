@@ -40,6 +40,7 @@ echo -e "${YELLOW}Installing core shell tools and utilities...${NC}"
 sudo pkg install -y \
     bash \
     bash-completion \
+    gum \
     git \
     wget \
     curl \
