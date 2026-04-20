@@ -149,6 +149,19 @@ gpu_menu() {
         "Back"
 }
 
+run_wm_install_script() {
+    local label="$1"
+    local script_name="$2"
+
+    echo -e "${YELLOW}Installing ${label}...${NC}"
+    chmod u+x "$script_name"
+    if ! ./"$script_name"; then
+        echo -e "${RED}${label} install encountered errors. Check output above.${NC}"
+        return 1
+    fi
+    echo -e "${GREEN}${label} installed successfully.${NC}"
+}
+
 # ── Main loop ─────────────────────────────────────────────────────────────────
 while true; do
     clear
@@ -188,46 +201,22 @@ while true; do
                 while IFS= read -r wm; do
                     case "$wm" in
                         "i3 (X11)")
-                            echo -e "${YELLOW}Installing i3...${NC}"
-                            chmod u+x install-i3.sh
-                            ./install-i3.sh
-                            wait
-                            echo -e "${GREEN}i3 installed successfully.${NC}"
+                            run_wm_install_script "i3" "install-i3.sh"
                             ;;
                         "BSPWM (X11)")
-                            echo -e "${YELLOW}Installing BSPWM...${NC}"
-                            chmod u+x install-bspwm.sh
-                            ./install-bspwm.sh
-                            wait
-                            echo -e "${GREEN}BSPWM installed successfully.${NC}"
+                            run_wm_install_script "BSPWM" "install-bspwm.sh"
                             ;;
                         "Awesome WM (X11)")
-                            echo -e "${YELLOW}Installing Awesome WM...${NC}"
-                            chmod u+x install-awesome.sh
-                            ./install-awesome.sh
-                            wait
-                            echo -e "${GREEN}Awesome WM installed successfully.${NC}"
+                            run_wm_install_script "Awesome WM" "install-awesome.sh"
                             ;;
                         "Hyprland (Wayland)")
-                            echo -e "${YELLOW}Installing Hyprland...${NC}"
-                            chmod u+x install-hyprland.sh
-                            ./install-hyprland.sh
-                            wait
-                            echo -e "${GREEN}Hyprland installed successfully.${NC}"
+                            run_wm_install_script "Hyprland" "install-hyprland.sh"
                             ;;
                         "Sway (Wayland)")
-                            echo -e "${YELLOW}Installing Sway...${NC}"
-                            chmod u+x install-sway.sh
-                            ./install-sway.sh
-                            wait
-                            echo -e "${GREEN}Sway installed successfully.${NC}"
+                            run_wm_install_script "Sway" "install-sway.sh"
                             ;;
                         "GNOME")
-                            echo -e "${YELLOW}Installing GNOME...${NC}"
-                            chmod u+x install-gnome.sh
-                            ./install-gnome.sh
-                            wait
-                            echo -e "${GREEN}GNOME installed successfully.${NC}"
+                            run_wm_install_script "GNOME" "install-gnome.sh"
                             ;;
                     esac
                 done <<< "$wm_choices"
