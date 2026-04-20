@@ -125,6 +125,7 @@ menu() {
         "Install GPU Drivers" \
         "Configure Touchscreen Support" \
         "Configure Bluetooth" \
+    "Rotate TTY Clockwise" \
         "Reboot System" \
         "Exit"
 }
@@ -290,6 +291,13 @@ while true; do
             echo -e "${GREEN}Bluetooth services enabled and started.${NC}"
             echo -e "${CYAN}Tip: Use 'hccontrol -n ubt0hci inquiry' to discover nearby devices.${NC}"
             echo -e "${CYAN}For GUI Bluetooth management install 'bluetuith' (pkg install bluetuith).${NC}"
+            ;;
+
+        "Rotate TTY Clockwise")
+            echo -e "${YELLOW}Rotating TTY 90 degrees clockwise and attempting persistence update...${NC}"
+            chmod u+x scripts/rotate-tty-clockwise.sh
+            sudo ./scripts/rotate-tty-clockwise.sh
+            echo -e "${GREEN}TTY rotation command executed. Reboot for full effect.${NC}"
             ;;
 
         "Reboot System")
