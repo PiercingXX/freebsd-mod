@@ -66,7 +66,8 @@ sudo pkg install -y \
     cpio \
     meson \
     cmake \
-    sshpass
+    sshpass \
+    rsync
 
 # ── Set bash as default login shell ──────────────────────────────────────────
 echo -e "${YELLOW}Setting bash as default shell for ${username}...${NC}"
